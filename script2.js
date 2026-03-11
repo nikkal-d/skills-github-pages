@@ -1,32 +1,32 @@
-                        // ΦΟΡΜΑ //
-
+// ΦΟΡΜΑ //
 let form = document.getElementById('form');
 let onoma = document.getElementById('onoma');
 let email = document.getElementById('email');
 let kodikos = document.getElementById('kodikos');
 
 form.addEventListener('submit', e => { 
-    e.preventDefault();
-
-    validateInputs();
+    // Καλούμε τη validateInputs και αποθηκεύουμε αν είναι όλα οκ
+    if (!validateInputs()) {
+        e.preventDefault(); // Σταματάει τη φόρμα ΜΟΝΟ αν υπάρχουν λάθη
+    }
 });
 
 let setError = (element, message) => {
-    let input = element.parentElement;
-    let errorDisplay = input.querySelector('.error');
+    let inputContainer = element.parentElement;
+    let errorDisplay = inputContainer.querySelector('.error');
 
     errorDisplay.innerText = message;
-    input.classList.add('error');
-    input.classList.remove('success')
+    inputContainer.classList.add('error');
+    inputContainer.classList.remove('success');
 }
 
 let setSuccess = element => {
-    let input = element.parentElement;
-    let errorDisplay = input.querySelector('.error');
+    let inputContainer = element.parentElement;
+    let errorDisplay = inputContainer.querySelector('.error');
 
     errorDisplay.innerText = '';
-    input.classList.add('success');
-    input.classList.remove('error');
+    inputContainer.classList.add('success');
+    inputContainer.classList.remove('error');
 };
 
 let isValidEmail = email => {
@@ -38,30 +38,38 @@ let validateInputs = () => {
     let onomaValue = onoma.value.trim();
     let emailValue = email.value.trim();
     let kodikosValue = kodikos.value.trim();
+    
+    let isAllValid = true; // Υποθέτουμε ότι όλα είναι σωστά στην αρχή
 
+    // Έλεγχος Ονόματος
     if(onomaValue === '') {
         setError(onoma, 'ΠΡΕΠΕΙ ΝΑ ΒΑΛΕΤΕ ΟΝΟΜΑ');
+        isAllValid = false;
     } else {
         setSuccess(onoma);
     }
 
+    // Έλεγχος Email
     if(emailValue === '') {
         setError(email, 'ΠΡΕΠΕΙ ΝΑ ΒΑΛΕΤΕ EMAIL');
+        isAllValid = false;
     } else if (!isValidEmail(emailValue)) {
         setError(email, 'ΒΑΛΤΕ ΜΙΑ ΣΩΣΤΗ ΔΙΕΥΘΥΝΣΗ EMAIL');
+        isAllValid = false;
     } else {
         setSuccess(email);
     }
 
+    // Έλεγχος Κωδικού
     if(kodikosValue === '') {
         setError(kodikos, 'ΠΡΕΠΕΙ ΝΑ ΒΑΛΕΤΕ ΚΩΔΙΚΟ');
+        isAllValid = false;
     } else if (kodikosValue.length < 8 ) {
-        setError(kodikos, 'Ο ΚΩΔΙΚΟΣ ΠΡΕΠΕΙ ΝΑ ΠΕΡΙΕΧΕΙ ΤΟΥΛΑΧΙΣΤΟΝ 8 ΧΑΡΑΚΤΗΡΕΣ.')
+        setError(kodikos, 'Ο ΚΩΔΙΚΟΣ ΠΡΕΠΕΙ ΝΑ ΠΕΡΙΕΧΕΙ ΤΟΥΛΑΧΙΣΤΟΝ 8 ΧΑΡΑΚΤΗΡΕΣ.');
+        isAllValid = false;
     } else {
         setSuccess(kodikos);
     }
 
-    
+    return isAllValid; // Επιστρέφει true αν δεν υπήρξε κανένα σφάλμα
 };
-
-
