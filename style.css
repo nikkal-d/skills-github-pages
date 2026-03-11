@@ -30,24 +30,37 @@ header {
        }
 
 /*------------------MENU-------------------*/
-	#nav {
-    width: 100%; /* Αντί για 400vh */
-    float: left;
+	
+#nav {
+    width: 100%;        /* Πιάνει όλο το πλάτος της οθόνης */
     margin: 0;
     padding: 0;
-    display: flex; /* Προσθέτουμε αυτό για καλύτερη στοίχιση */
-    flex-wrap: wrap; /* Για να μην πλακώνονται σε μικρές οθόνες */
-    border: 1px solid white;
-    background: linear-gradient(to bottom, #b8c6df 46%,#6d88b7 78%);
-}
-    
-
-#nav li, #nav li a {
-    float:left;    }
-    
-#nav li {
+    display: flex;      /* Ενεργοποιεί το Flexbox */
     list-style: none;
-    position: relative;}
+    background: linear-gradient(to bottom, #b8c6df 46%, #6d88b7 78%);
+    border-bottom: 1px solid black;
+}
+
+#nav li {
+    flex: 1;            /* Αυτό είναι το "μαγικό": μοιράζει ισόποσα τον χώρο σε όλα τα κουμπιά */
+    display: flex;
+}
+
+#nav li a {
+    width: 100%;        /* Το link πιάνει όλο το χώρο του li */
+    padding: 20px 0;    /* Αφαιρούμε το πλευρικό padding για να μην "σπάει" */
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-size: 18px;    /* Μπορείς να το μικρύνεις αν είναι πολλά τα κουμπιά */
+    background: linear-gradient(to bottom, #b8c6df 46%, #6d88b7 78%);
+    border-right: 1px solid #207cca;
+    box-sizing: border-box; /* Απαραίτητο για να μετράνε σωστά τα borders */
+}
+
+#nav li:last-child a {
+    border-right: none; /* Αφαιρεί το border από το τελευταίο κουμπί */
+}
     
 #nav li a{
     padding: 15px 20px;
@@ -369,4 +382,5 @@ body {
     padding: 1em;
     }
 }
+
 
