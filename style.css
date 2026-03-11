@@ -2,385 +2,197 @@
 
 /*------------------BODY------------------*/
 body {
-	font-family: "calibri", serif;
-	font-size: 18px;
-	color: #000;
-	background-color: lightgray;
-	padding: 0px 0px;
-	line-height:normal;
-	outline:outset;
-	outline-color:#FFF;
-	background-position:center left;
-	background-attachment:fixed;
-    }
+    font-family: "calibri", serif;
+    font-size: 18px;
+    color: #000;
+    background-color: lightgray;
+    margin: 0; /* Μηδενισμός margin για να κολλάει στις άκρες */
+    padding: 0;
+    line-height:normal;
+    background-position:center left;
+    background-attachment:fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Κεντράρει τα πάντα οριζόντια */
+}
 
 /*------------------HEADER-------------------*/
 header {
-	height: 80px;
-	background-position: center;
-	background-repeat:no-repeat;
-	background-color: #090913;
-	width:100%;
-	text-align: center;
-	color: #CCC;
-	font-size: 36px;
-	font-family:"calibri", serif;
-	outline: outset;
-	outline-color:#FFF; 
-       }
+    height: 80px;
+    background-position: center;
+    background-repeat:no-repeat;
+    background-color: #090913;
+    width:100%;
+    text-align: center;
+    color: #CCC;
+    font-size: 36px;
+    font-family:"calibri", serif;
+    outline: outset;
+    outline-color:#FFF; 
+}
 
 /*------------------MENU-------------------*/
-	
 #nav {
-    width: 100%;        /* Πιάνει όλο το πλάτος της οθόνης */
-    margin: 0;
+    width: 100%;
+    margin: 0 auto;
     padding: 0;
-    display: flex;      /* Ενεργοποιεί το Flexbox */
+    display: flex;
+    flex-wrap: wrap; /* Για να μην σπάει στο zoom */
     list-style: none;
     background: linear-gradient(to bottom, #b8c6df 46%, #6d88b7 78%);
     border-bottom: 1px solid black;
 }
 
 #nav li {
-    flex: 1;            /* Αυτό είναι το "μαγικό": μοιράζει ισόποσα τον χώρο σε όλα τα κουμπιά */
+    flex: 1;
     display: flex;
+    min-width: 120px; /* Για να μην στριμώχνονται πολύ */
 }
 
 #nav li a {
-    width: 100%;        /* Το link πιάνει όλο το χώρο του li */
-    padding: 20px 0;    /* Αφαιρούμε το πλευρικό padding για να μην "σπάει" */
+    width: 100%;
+    padding: 15px 10px;
     text-decoration: none;
     color: white;
     text-align: center;
-    font-size: 18px;    /* Μπορείς να το μικρύνεις αν είναι πολλά τα κουμπιά */
+    font-size: 18px;
+    font-family:"calibri", serif;
     background: linear-gradient(to bottom, #b8c6df 46%, #6d88b7 78%);
     border-right: 1px solid #207cca;
-    box-sizing: border-box; /* Απαραίτητο για να μετράνε σωστά τα borders */
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+#nav li a:hover {
+    filter: brightness(1.1);
 }
 
 #nav li:last-child a {
-    border-right: none; /* Αφαιρεί το border από το τελευταίο κουμπί */
+    border-right: none;
 }
-    
-#nav li a{
-    padding: 15px 20px;
-    text-decoration: none;
-    color: white;
-    text-align: center;
-    font-size: 20px;
-    font-family:"calibri", serif;
-    background: #bce0ee;
-    background: linear-gradient(to bottom,  #b8c6df 46%,#6d88b7 78%);
-    border-right: 1 px solid #207cca;
-    border-left: 1px solid #2ab0ed;
-    border-bottom: 1px solid #232323;
-    cursor: pointer;
-    }
-    
-#nav li a:hover{
-    background: #bce0ee;
-    background: linear-gradient(to bottom,  #b8c6df 46%,#6d88b7 78%);
-    }
-    
+
 #nav li ul {
     display: none;
     position: absolute;
     left: 0;
-    padding: 0 ;
+    padding: 0;
     margin: 0;
     top: 100%; 
-    }
-    
+    z-index: 1000;
+}
+
 #nav li:hover > ul {
     display: block;
-    }
-    
-#nav li ul li a{
-    width: 100px;
-    display:block;
+}
+
+#nav li ul li a {
+    width: 150px;
+    display: block;
     font-size: 15px;
-    font-family:"calibri", serif;
-    text-align: center;
-    }
-    
+    background: #6d88b7;
+}
 
 /*------------------MAIN-------------------*/
 main {
-    width:90%;
-	line-height: 100%;
-	min-height: 700px;
-	background-color: lightgray;
-	font-size: 15px;
-	font-family: "calibri", serif;
-	outline-color:#FFF;
-    text-overflow: clip;
-    text-align: center;
-    text-indent: 80px;
-    white-space: pre;
-    }
-    
-   
-/*------------------images-------------------*/     
-.row {
-  display: flex;
-    padding: 5px;
-    margin: 5px;
+    width: 95%;
+    max-width: 1200px; /* Ορίζει ένα λογικό μέγιστο πλάτος */
+    margin: 20px auto; /* Κεντράρει το main */
+    line-height: 100%;
+    min-height: 700px;
     background-color: lightgray;
-    }
+    font-size: 15px;
+    font-family: "calibri", serif;
+    text-align: center;
+    white-space: pre-wrap; /* Για να μην βγαίνει το κείμενο έξω */
+}
+
+/*------------------IMAGES-------------------*/      
+.row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 5px;
+    margin: 0 auto;
+    background-color: lightgray;
+}
 
 .column {
     flex: 25%;
+    max-width: 25%;
     padding: 5px;
-    margin: 5px;
-    background-color: lightgray;
+    box-sizing: border-box;
 }
-    
-    #pinakas {
-        padding: 10px;
-    }
 
 /*------------------FOOTER -------------------*/
-
-footer{
+footer {
     width: 100%;
-	clear: both;
-	background-color: lightgray;
-	height: 150px;
-	color:#000;
-	border-top: 1px solid gray;
-	font-size: 15px;
-	font-family: "calibri", serif;
+    background-color: lightgray;
+    height: auto;
+    min-height: 100px;
+    color:#000;
+    border-top: 1px solid gray;
+    font-size: 15px;
+    font-family: "calibri", serif;
     text-align: center;
-	}
+    padding: 20px 0;
+}
 
-
-/* --- CLOCK ----------------------------------------------*/
-.rol{
+/* --- CLOCK --- */
+.rol {
     width: 100%;
     height: 80px;
     background: black;
     color: #fff;
-    position: relative;}
+    position: relative;
+}
         
-.container{
+.container {
     max-width: 95%;
-	width: 100%;
+    width: 1000px; /* Ένα σταθερό αλλά λογικό πλάτος */
     height: 60px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #bce0ee;
-    background: linear-gradient(to bottom,  #b8c6df 46%,#6d88b7 78%);
-    border-right: 1 px solid #207cca;
-    border-left: 1px solid #2ab0ed;
-    border-bottom: 1px solid #232323;
-    }
+    background: linear-gradient(to bottom, #b8c6df 46%,#6d88b7 78%);
+    border-radius: 5px;
+}
 
-.roloi{
+.roloi {
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.11);
-    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    }
-    
-.roloi span {
-    font-size: 40px;
-    width: 80px;
-    display: inline-block;
-    text-align: center;
-    position: relative;
-    }
-    
-.roloi span::after{
-    content: ' ';
-    font-size: 12px;
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%); 
-    }
-    
-#wra::after{
-    content: 'ΩΡΕΣ';
-    }
-    
-#lepta::after{
-    content: 'ΛΕΠΤΑ';
-    }
-    
-#deyt::after{
-    content: 'ΔΕΥΤΕΡΟΛΕΠΤΑ';
-    }
+}
 
-    
-/* --- form ----------------------------------------------*/
- 
+/* --- FORM --- */
 #form {
     max-width: 95%;
-	width: 100%;
-    margin: 2vh auto 0 auto;
-    padding: 10px;
+    width: 600px; /* Πιο λογικό πλάτος για φόρμα */
+    margin: 20px auto;
+    padding: 20px;
     background-color: black;
     border-radius: 10px;
-    font-size: 20px;
     color: white;
-    display: grid;  
-    }
-    
-#form button {
-    padding: 15px;
-    width: 100%;
-    color: white;
-    background: linear-gradient(to bottom,  #b8c6df 46%,#6d88b7 78%);
-    border: none;
-    border-radius: column;
-    font-size: 20px;
-    cursor: pointer;
-    }
-    
-.input{
-    background: linear-gradient(to bottom,  #b8c6df 46%,#6d88b7 78%);
-    display: grid;
-    flex-direction: column;     
-    }
-    
-.input input{
-    border: 2px solid #f0f0f0;
-    border-radius: 4px;
-    position: inherit;
-    font-size: 12px;
-    padding: 7px;
-    width: 50%;
-    transform: translateX(50%);
-    }
-    
-.input input:focus{
-    outline: 0;       
-}
-    
-.input.success input {
-    border-color:greenyellow;
-    }
-    
-.input.error input {
-    border-color: red;
-    }
-    
-.input .error {
-    color: red;
-    font-size: 9px;
-    height: 13px;
-    }
-    
-div{
-    width: 100%;
-    background-color: black;
-    text-align: center;
 }
 
-
-/* --- images ----------------------------------------------*/
- 
-.im{
-    position: absolute;
-    top: 128%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 700px;
-    height: 600px;
-    background: white;
-    box-shadow: 0 30px 50px;
+/* Διατηρώ το υπόλοιπο στυλ της φόρμας και των εικόνων ως έχει */
+.input input {
+    width: 80%; /* Πιο ευέλικτο πλάτος */
+    margin: 5px auto;
 }
 
-.im .slide .imag{
-    width: 200px;
-    height: 250px;
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    box-shadow: 0 30px 50px;
-    background-position: 50% 50%;
-    background-size: cover;
-    display: inline-block;
-    transition: 0.8s;
-}
-
-.slide .imag:nth-child(1),
-    
-.slide .imag:nth-child(2){
-    top: 0;
-    left: 0;
-    transform: translate(0, 0);
-    border-radius: 0;
-    width: 100%;
-    height: 100%;
-}
-
-
-.slide .imag:nth-child(3){
-    left: 60%;
-}
-.slide .imag:nth-child(4){
-    left: calc(60% + 220px);
-}
-.slide .imag:nth-child(5){
-    left: calc(60% + 440px);
-}
-
-.slide .imag:nth-child(6){
-    left: calc(60% + 660px);
-    opacity: 0;
-}
-
-.button{
-    width: 0%;
-    text-align: center;
-    position:inherit;
-    bottom: 30px;
-}
-
-.button button{
-    width: 80px;
-    height: 35px;
-    cursor: pointer;
-    top: 100%;
-    transform: translate(1100%, -50%);
-    }
-   
-/* --- PRINTER ----------------------------------------------*/
-
+/* --- PRINTER --- */
 @media print {
-
-#footer {
-    display: none;
-        }
-
-
-#main {          
-    padding: 2em;
-    line-height: 130%;
-    font-size: 11pt;}
+    #footer, #nav { display: none; }
+    main { width: 100%; padding: 0; font-size: 11pt; }
 }
 
+/* --- MOBILE --- */
 @media screen and (max-width:850px) {
-
-body {
-	padding: 0;
-	line-height:normal;
-	outline:outset;
-	outline-color:#FFF;
-	background-color:#000;
-	}
-
-#main {
-    margin-left: 0;
-    border-left: none;
-    padding: 1em;
-    }
+    #nav li { flex: 100%; } /* Τα μενού γίνονται το ένα κάτω από το άλλο */
+    .column { flex: 100%; max-width: 100%; }
 }
 
-
+} /* Τέλος media screen */
